@@ -2,22 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-background text-gray-800;
+@font-face {
+  font-family: 'GeistVF';
+  src: url('/fonts/GeistVF.woff') format('woff');
+  font-weight: 100 900;
+  font-display: swap;
 }
 
-.card {
-  @apply bg-white rounded-lg shadow-md p-6 mb-4;
+@font-face {
+  font-family: 'GeistMonoVF';
+  src: url('/fonts/GeistMonoVF.woff') format('woff');
+  font-weight: 100 900;
+  font-display: swap;
 }
 
-.btn {
-  @apply px-4 py-2 rounded-md text-white font-semibold;
+@layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+  }
 }
 
-.btn-primary {
-  @apply bg-primary hover:bg-blue-600;
+.hero-gradient {
+  background: linear-gradient(to right, #007AFF, #00C6FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.btn-secondary {
-  @apply bg-secondary hover:bg-green-600;
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-10deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-10deg); }
+  80% { transform: rotate(12deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  animation: wave 1.5s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: 70% 70%;
 }
