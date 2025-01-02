@@ -21,31 +21,35 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-none dark:shadow-none hover:shadow-xl dark:hover:shadow-none transition-shadow">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
                 기본 정보
               </h3>
-              <div className="space-y-3 text-gray-600 dark:text-gray-300">
+              <div className="space-y-3 text-gray-700 dark:text-gray-300">
                 <p className="flex items-center gap-2">
-                  <span>👤</span> 송현민
+                  <span className="bg-blue-50 dark:bg-transparent p-2 dark:p-0 rounded-full">👤</span>
+                  송현민
                 </p>
                 <p className="flex items-center gap-2">
-                  <span>📅</span> 1984.03.21
+                  <span className="bg-blue-50 dark:bg-transparent p-2 dark:p-0 rounded-full">📅</span>
+                  1984.03.21
                 </p>
                 <p className="flex items-center gap-2">
-                  <span>📧</span> sutekitane@naver.com
+                  <span className="bg-blue-50 dark:bg-transparent p-2 dark:p-0 rounded-full">📧</span>
+                  sutekitane@naver.com
                 </p>
                 <p className="flex items-center gap-2">
-                  <span>🏠</span> 경기도 안산시 상록구 사동
+                  <span className="bg-blue-50 dark:bg-transparent p-2 dark:p-0 rounded-full">🏠</span>
+                  경기도 안산시 상록구 사동
                 </p>
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-none dark:shadow-none hover:shadow-xl dark:hover:shadow-none transition-shadow">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
                 저는 이런 개발자입니다
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-700 dark:text-gray-300">
                 사용자 경험을 중요시하며, 깔끔하고 효율적인 코드 작성을 지향합니다.
                 새로운 기술을 배우는 것을 좋아하며, 팀과의 협업을 통해 더 나은 결과물을
                 만들어내는 것을 즐깁니다.
@@ -54,8 +58,8 @@ export default function About() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-none dark:shadow-none hover:shadow-xl dark:hover:shadow-none transition-shadow">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
                 경력 사항
               </h3>
               <div className="space-y-4">
@@ -64,11 +68,11 @@ export default function About() {
                     key={index}
                     className={`p-3 rounded-lg ${
                       career.isCurrent
-                        ? 'bg-blue-50 dark:bg-blue-900'
-                        : 'bg-white dark:bg-gray-700'
+                        ? 'bg-blue-50 border border-blue-100 dark:border-none dark:bg-blue-900'
+                        : 'bg-gray-50 border border-gray-100 dark:border-none dark:bg-gray-700'
                     }`}
                   >
-                    <div className="font-semibold text-gray-900 dark:text-white">
+                    <div className="font-semibold text-gray-800 dark:text-white">
                       {career.company}
                     </div>
                     <div className="text-gray-600 dark:text-gray-300">

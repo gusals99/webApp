@@ -35,17 +35,17 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
   return (
     <>
       <aside 
-        className={`fixed left-0 h-screen bg-white dark:bg-gray-900 shadow-lg transition-all duration-300 z-40 
+        className={`fixed left-0 h-screen bg-gray-50 dark:bg-gray-900 shadow-lg transition-all duration-300 z-40 border-r border-gray-200 dark:border-gray-700
           ${isCollapsed ? 'w-20' : 'w-64'}
           ${isCollapsed ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           hidden md:block
         `}
       >
-        <div className="flex flex-col h-full pt-4">
-          <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-col h-full">
+          <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
             <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
               {!isCollapsed && (
-                <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
+                <Link href="/" className="text-xl font-bold text-gray-800 dark:text-white">
                   Portfolio
                 </Link>
               )}
@@ -53,14 +53,14 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                 {mounted && (
                   <button
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                    className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
                     {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
                   </button>
                 )}
                 <button
                   onClick={() => setIsCollapsed(!isCollapsed)}
-                  className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                   aria-label={isCollapsed ? '메뉴 펼치기' : '메뉴 접기'}
                 >
                   <FiChevronLeft
@@ -81,11 +81,12 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                     onClick={(e) => handleClick(e, item.href)}
                     className={`
                       flex items-center px-4 py-3 rounded-lg
-                      text-gray-800 dark:text-gray-200
-                      hover:bg-gray-100 dark:hover:bg-gray-700
-                      transition-colors
+                      text-gray-700 dark:text-gray-200
+                      hover:bg-white dark:hover:bg-gray-800
+                      hover:shadow-sm dark:hover:shadow-none
+                      transition-all
                       ${isCollapsed ? 'justify-center' : 'justify-start space-x-3'}
-                      ${router.pathname === item.href ? 'bg-gray-100 dark:bg-gray-700' : ''}
+                      ${router.pathname === item.href ? 'bg-white dark:bg-gray-800 shadow-sm dark:shadow-none' : ''}
                     `}
                   >
                     <span className={`text-gray-500 dark:text-gray-400 ${router.pathname === item.href ? 'text-blue-500 dark:text-blue-400' : ''}`}>
