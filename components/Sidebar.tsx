@@ -1,15 +1,13 @@
-import React from 'react';
-import { useSidebar } from '@/contexts/SidebarContext';
-import { FiMenu, FiX, FiHome, FiUser, FiCode, FiFolder, FiMail, FiChevronLeft } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
+import { FiHome, FiUser, FiFolder, FiSun, FiMoon, FiChevronLeft } from 'react-icons/fi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTheme } from 'next-themes';
 
 const menuItems = [
   { id: 'home', label: '홈', href: '/', icon: <FiHome size={20} /> },
   { id: 'about', label: '소개', href: '/about', icon: <FiUser size={20} /> },
-  { id: 'skills', label: '기술', href: '/skills', icon: <FiCode size={20} /> },
-  { id: 'projects', label: '프로젝트', href: '/projects', icon: <FiFolder size={20} /> },
-  { id: 'contact', label: '연락처', href: '/contact', icon: <FiMail size={20} /> },
+  { id: 'projects', label: '프로젝트', href: '/projects', icon: <FiFolder size={20} /> }
 ];
 
 interface SidebarProps {
@@ -18,56 +16,60 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
-  const { isOpen, toggleSidebar } = useSidebar();
+  const { theme, setTheme } = useTheme();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     if (window.innerWidth < 768) {
-      toggleSidebar();
+      setIsCollapsed(!isCollapsed);
     }
     router.push(href);
   };
 
   return (
     <>
-      <button
-        onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-50 p-2 rounded-md bg-gray-900 dark:bg-gray-700 text-white md:hidden"
-        aria-label={isOpen ? '메뉴 닫기' : '메뉴 열기'}
-      >
-        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-      </button>
-
-      <div
-        className={`
-          fixed top-0 left-0 h-full bg-white dark:bg-gray-800 shadow-lg z-40
-          transform transition-all duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          md:translate-x-0
+      <aside 
+        className={`fixed left-0 h-screen bg-white dark:bg-gray-900 shadow-lg transition-all duration-300 z-40 
           ${isCollapsed ? 'w-20' : 'w-64'}
+          ${isCollapsed ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+          hidden md:block
         `}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full pt-4">
           <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-            <Link 
-              href="/" 
-              className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}
-            >
-              <span className={`text-xl font-bold text-gray-900 dark:text-white ${isCollapsed ? 'hidden' : 'block'}`}>
-                Portfolio
-              </span>
-              <button
-                onClick={() => setIsCollapsed(!isCollapsed)}
-                className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                aria-label={isCollapsed ? '메뉴 펼치기' : '메뉴 접기'}
-              >
-                <FiChevronLeft
-                  size={20}
-                  className={`transform transition-transform ${isCollapsed ? 'rotate-180' : ''}`}
-                />
-              </button>
-            </Link>
+            <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
+              {!isCollapsed && (
+                <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
+                  Portfolio
+                </Link>
+              )}
+              <div className="flex items-center gap-2">
+                {mounted && (
+                  <button
+                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  >
+                    {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
+                  </button>
+                )}
+                <button
+                  onClick={() => setIsCollapsed(!isCollapsed)}
+                  className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  aria-label={isCollapsed ? '메뉴 펼치기' : '메뉴 접기'}
+                >
+                  <FiChevronLeft
+                    size={20}
+                    className={`transform transition-transform ${isCollapsed ? 'rotate-180' : ''}`}
+                  />
+                </button>
+              </div>
+            </div>
           </div>
 
           <nav className="flex-1 p-4">
@@ -100,12 +102,12 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
             </ul>
           </nav>
         </div>
-      </div>
+      </aside>
 
-      {isOpen && (
+      {isCollapsed && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
-          onClick={toggleSidebar}
+          onClick={() => setIsCollapsed(false)}
         />
       )}
     </>

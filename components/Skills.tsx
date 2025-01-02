@@ -1,23 +1,45 @@
-import React from 'react';
+'use client';
 
 const skills = [
   {
     category: "Frontend",
-    items: ["React", "TypeScript", "Next.js", "Tailwind CSS", "HTML/CSS"]
+    items: [
+      "React", 
+      "TypeScript",
+      "JavaScript",
+      "HTML/CSS",
+      "jQuery",
+      "KendoUI",
+      "Mi-Platform",
+      "X-Platform"
+    ]
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "MongoDB", "PostgreSQL"]
+    items: [
+      "Java",
+      "JSP",
+      "Spring",
+      "iBatis",
+      "전자정부프레임워크"
+    ]
   },
   {
-    category: "Tools & Others",
-    items: ["Git", "Docker", "AWS", "Figma", "Jest"]
+    category: "Database & Tools",
+    items: [
+      "Oracle",
+      "MySQL",
+      "MS-SQL",
+      "Eclipse",
+      "Toad",
+      "Git"
+    ]
   }
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="skills" className="py-20 md:py-8 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">

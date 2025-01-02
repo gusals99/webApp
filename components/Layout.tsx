@@ -1,22 +1,20 @@
 import React from 'react';
-import Footer from './Footer';
 import Sidebar from './Sidebar';
-import ThemeToggle from './ThemeToggle';
+import Navbar from './Navbar';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      <ThemeToggle />
-      <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
-      <div className={`transition-all duration-300 ${isCollapsed ? 'md:ml-20' : 'md:ml-64'}`}>
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <div className="flex flex-grow">
+        <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+        <main className={`flex-grow transition-all duration-300 ${
+          isCollapsed ? 'ml-0 md:ml-20' : 'ml-0 md:ml-64'
+        } pt-4`}>
+          {children}
+        </main>
       </div>
     </div>
   );
